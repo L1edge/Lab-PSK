@@ -1,0 +1,10 @@
+--------------- Rebuild Started: 02/25/2026 11:43:27 Project: main.c, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM0\ARM_GCC_541\Debug\main.o
+main.c: In function 'main':
+main.c:18:4: warning: implicit declaration of function 'Button_Read' [-Wimplicit-function-declaration]
+ if(Button_Read() == 1)
+    ^
+main.c:20:1: warning: implicit declaration of function 'LED_Write' [-Wimplicit-function-declaration]
+ LED_Write(0);
+ ^
+--------------- Rebuild Succeeded: 02/25/2026 11:43:27 ---------------
