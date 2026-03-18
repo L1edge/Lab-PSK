@@ -1,54 +1,23 @@
-# 🎓 PSoC 4 Embedded Systems Laboratory Works
+# PSoC 4: Non-blocking Delay & UART Logging (Lab 2)
 
 ## English Version
-### Overview
-This repository contains a collection of laboratory projects developed for the **Computer Systems and Networks** course. All projects are built on the **Cypress PSoC 4** architecture using the `CY8CKIT-042 Pioneer Kit`. The repository demonstrates a progressive learning curve in embedded systems programming in C, from basic GPIO control to advanced hardware interrupts and serial communication.
+### Project Overview
+This laboratory work focuses on implementing a non-blocking delay architecture and edge-detection for hardware interrupts on the PSoC 4 platform. It controls an RGB LED's blinking patterns and logs state changes via UART without freezing the microcontroller's main loop.
 
-### Laboratory Index
-* **Lab 1: GPIO & Active-Low Logic** * Basic configuration of Digital Inputs (Resistive pull-up) and Outputs (Strong drive).
-  * Interaction between a mechanical button and an onboard RGB LED.
-* **Lab 3: Matrix Keypad & State Machines**
-  * Scanning a 4x3 matrix keypad.
-  * Debouncing algorithms and RGB color mixing via `switch(case)` logic.
-  * UART integration for serial debugging and password validation logging.
-* **Lab 4: Shift Registers (74HC595)**
-  * Bit-banging implementation of SPI-like communication.
-  * Serial-to-parallel data conversion to control 7-segment displays.
-* **Lab 5: Timers, Interrupts & Dynamic Indication**
-  * Hardware timer configuration and ISR (Interrupt Service Routine) handling.
-  * Multiplexing multi-digit displays (dynamic indication) to optimize MCU pin usage.
-  * Integration with Saleae Logic Analyzer for signal verification.
-
-### Tools & Software
-* **IDE:** PSoC Creator 4.4
-* **Compiler:** ARM GCC 5.4.1
-* **Hardware:** CY8C4245AXI-483 (Cortex-M0)
-* **Debugging:** Saleae Logic 2, PuTTY/Tera Term
+### Key Features
+* **Non-blocking Blinking:** Replaced standard `CyDelay()` functions with a counter-based timer approach to allow continuous monitoring of button states.
+* **Edge Detection:** Implemented a `last_state` variable to register physical button clicks only once per press, preventing state-toggling spam.
+* **UART Debugging:** Transmits real-time mode changes to a serial terminal at 115200 baud.
+* **Active-Low RGB Control:** Implements an abstracted `SetLED(r,g,b)` function to simplify hardware-level pin control.
 
 ---
 
 ## Українська версія
-### Опис репозиторію
-Цей репозиторій містить колекцію лабораторних проєктів, розроблених у рамках курсу **«Комп'ютерні системи та мережі»**. Усі проєкти базуються на архітектурі **Cypress PSoC 4** з використанням налагоджувальної плати `CY8CKIT-042 Pioneer Kit`. Репозиторій демонструє поступове освоєння програмування вбудованих систем мовою C: від базового керування портами до апаратних переривань та послідовних інтерфейсів.
+### Опис проекту
+Ця лабораторна робота присвячена реалізації архітектури неблокуючих затримок та відловлюванню фронту (edge-detection) для апаратних кнопок на платформі PSoC 4. Проект керує режимами миготіння RGB-світлодіода та логує зміни станів через UART без "заморожування" головного циклу мікроконтролера.
 
-### Зміст лабораторних робіт
-* **Лаб. 1: GPIO та Інвертована логіка**
-  * Базова конфігурація цифрових входів (Resistive pull-up) та виходів (Strong drive).
-  * Керування RGB-світлодіодом за допомогою механічної кнопки.
-* **Лаб. 3: Матрична клавіатура та Скінченні автомати**
-  * Сканування матричної клавіатури 4x3.
-  * Алгоритми антидребізгу та міксування кольорів RGB через `switch(case)`.
-  * Використання UART для логування подій та перевірки паролів.
-* **Лаб. 4: Зсувні регістри (74HC595)**
-  * Програмна реалізація протоколу SPI (bit-banging).
-  * Перетворення послідовних даних у паралельні для керування 7-сегментними індикаторами.
-* **Лаб. 5: Таймери, Переривання та Динамічна індикація**
-  * Налаштування апаратних таймерів та обробників переривань (ISR).
-  * Мультиплексування багаторозрядних індикаторів (динамічна індикація) для економії пінів мікроконтролера.
-  * Робота з логічним аналізатором Saleae Logic для перевірки сигналів.
-
-### Програмне забезпечення та Інструменти
-* **IDE:** PSoC Creator 4.4
-* **Компілятор:** ARM GCC 5.4.1
-* **Апаратна платформа:** CY8C4245AXI-483 (Cortex-M0)
-* **Налагодження:** Saleae Logic 2, PuTTY / Tera Term
+### Основний функціонал
+* **Неблокуюче миготіння:** Стандартні функції `CyDelay()` замінено на підхід з таймером-лічильником, що дозволяє безперервно моніторити стан кнопок.
+* **Відловлювання фронту:** Використано змінну `last_state` для реєстрації фізичного кліку лише один раз за натискання, що запобігає множинним спрацьовуванням.
+* **UART Дебаг:** Передача інформації про зміну режимів у реальному часі на термінал (швидкість 115200 бод).
+* **Інвертована логіка RGB:** Реалізовано абстраговану функцію `SetLED(r,g,b)` для спрощення керування пінами на апаратному рівні.
